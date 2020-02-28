@@ -1,0 +1,41 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <span>Project</span>
+    <a mat-button routerLink="home">
+        <mat-icon aria-hidden="false">home</mat-icon>
+        Home
+    </a>
+    <a mat-button routerLink="discover" routerLinkActive="active"><i class="material-icons">
+            search
+            </i>Discover</a>
+    <a mat-button routerLink="marketplace" routerLinkActive="active"><i class="material-icons">
+                calendar_today
+                </i>Events</a>
+    <a mat-button routerLink="marketplace" routerLinkActive="active"><i class="material-icons">
+            store
+            </i>Marketplace</a>
+    <a mat-button routerLink="questions" routerLinkActive="active"><i class="material-icons">
+            question_answer
+            </i>Q&A</a>
+
+    <div class="spacer"></div>
+
+
+    <div *ngIf="loggedIn">
+        <a mat-button routerLink="home">
+            <mat-icon aria-hidden="false">person</mat-icon>
+        </a>
+        <a mat-button routerLink="home">
+            <mat-icon aria-hidden="false">email</mat-icon>
+        </a>
+    </div>
+
+    <div *ngIf="!loggedIn">
+        <a mat-button routerLink="login">
+            LOGIN
+        </a>
+        <a mat-button routerLink="register">
+            REGISTER
+        </a>
+    </div>
+
+</mat-toolbar>

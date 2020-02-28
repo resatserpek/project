@@ -1,0 +1,33 @@
+<mat-toolbar>
+    <span>Register</span>
+</mat-toolbar>
+<div class="row" *ngIf="authError">
+    <mat-label>{{ authError?.message }}</mat-label>
+</div>
+<mat-card-content>
+    <form [formGroup]="registerForm" class="my-form">
+        <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="First name" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="Last Name" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location" placeholder="Location">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Email" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" placeholder="Password" type="password" required>
+        </mat-form-field>
+    </form>
+</mat-card-content>
+<mat-card-actions>
+    <button mat-raised-button (click)="createUser(registerForm.value)" [disabled]="!registerForm.valid" color="primary">REGISTER</button>
+</mat-card-actions>
