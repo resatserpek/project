@@ -1,6 +1,6 @@
 <div class="root">
     <div class="navigation">
-        <app-nav-bar [loggedIn]></app-nav-bar>
+        <app-nav-bar [loggedIn]="loggedIn" [auth]="auth"></app-nav-bar>
     </div>
     <div class="app-content">
         <router-outlet></router-outlet>

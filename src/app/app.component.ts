@@ -1,4 +1,5 @@
-import { Component, Input} from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService  } from "../app/services/user/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,15 @@ import { Component, Input} from '@angular/core';
 export class AppComponent {
   title = 'Project';
 
-  loggedIn: boolean;
+  private loggedIn: boolean;
+  private auth: AuthService;
 
-  constructor(){
+  constructor(auth: AuthService){
+    this.auth = auth;
+    this.loggedIn = true;
+  }
 
+  toggleLoggedIn(){
+    this.loggedIn = !this.loggedIn;
   }
 }

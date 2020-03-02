@@ -19,7 +19,8 @@ import { User } from '../../../models/user';
 })
 export class AuthService {
   
-  newUser: any;
+  user: Observable<User>;
+
   
   private eventAuthError = new BehaviorSubject<string>("");
   eventAuthError$ = this.eventAuthError.asObservable();
@@ -54,7 +55,7 @@ export class AuthService {
     
   }
   getUserState(){
-    return this.afAuth.authState;
+    return this.afAuth.user;
   }
   
 

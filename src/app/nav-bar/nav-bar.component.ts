@@ -1,4 +1,4 @@
-import { Component , Input} from '@angular/core';
+import { Component , Input, OnInit} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -18,7 +18,13 @@ export class NavBarComponent {
       shareReplay()
     );
 
-  @Input() loggedIn ;
-  constructor(private auth: AuthService,private breakpointObserver: BreakpointObserver) {}
+  @Input() auth: AuthService;
+  @Input() loggedIn: boolean;
+  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  test(){
+    var hey = this.auth.getUserState();
+    console.log(hey);
+  }
 
 }
