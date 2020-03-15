@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 
 @Component({
@@ -7,27 +7,13 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./post-card.component.scss']
 })
 export class PostCardComponent implements OnInit {
-  name: String = "Resat Serpek";
-  date: String = "01.01.2020";
-  text: String = "This is a song.";
-  value = 0;
-
+  @Input() postInstance;
   constructor() {
     
   }
 
   ngOnInit() {
-    this.value = 0;
-  }
 
-  increment (){
-    
-    this.value++;
-
-  }
-  play(){
-    var myVar = setInterval(this.increment, 1000);
-    
   }
 }
     

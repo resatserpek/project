@@ -1,65 +1,113 @@
-import { Injectable } from '@angular/core';
+//https://fireship.io/lessons/angularfire-google-oauth/
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../../models/user';
 
-import { auth } from 'firebase/app';
+import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map } from "rxjs/operators";
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from '@angular/fire/firestore';
+import { AngularFirestore} from '@angular/fire/firestore';
 
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators'; 
+import { switchMap } from 'rxjs/operators';
 
 
-import { User } from '../../../models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  
-  user: Observable<User>;
-
+export class AuthService implements OnDestroy {
+  ngOnDestroy(): void {
+    this.user$ = null;
+    this.eventAuthError$ = null;
+  }
+  //https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
+  private user$: Observable<firebase.User>;
+  private userDetails: firebase.User = null;
   
   private eventAuthError = new BehaviorSubject<string>("");
   eventAuthError$ = this.eventAuthError.asObservable();
+
+
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router
-    ) {}
+    ) {   
+      this.user$ = afAuth.authState;
+      this.user$.subscribe(
+        (user) => {
+          if (user) {
+            this.userDetails = user;
+            console.log("Yes")
+          } else{
+            this.userDetails = null;
+          }
+        }
+      );  
+    }
 
-  createUser(user){
-    this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
-      .then( userCredential => {
-        this.newUser = user;
 
-        userCredential.user.updateProfile({
-          displayName: user.firstName + ' ' + user.lastName
-        });
-
-        this.insertUserData(userCredential);
-
-      })
-      .catch( error => {
-        console.log(error);
-        this.eventAuthError.next(error);
-      })
+  checkAuth(){
+    return ((this.userDetails == null) ? false : true);
   }
+
+
+  //https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
+  // CHANGE THIS LATER
+  signInWithTwitter() {
+    return this.afAuth.auth.signInWithPopup(
+      new firebase.auth.TwitterAuthProvider()
+    )
+  }
+
+  signInWithFacebook() {
+    return this.afAuth.auth.signInWithPopup(
+      new firebase.auth.FacebookAuthProvider()
+    )
+  }
+
+  signInWithGoogle() {
+    return this.afAuth.auth.signInWithPopup(
+      new firebase.auth.GoogleAuthProvider()
+    )
+  }
+
+  signOut(){
+    this.afAuth.auth.signOut()
+    .then((res) => this.router.navigate(['/']));
+  }
+
+
   
-  insertUserData(userCredential: firebase.auth.UserCredential){
-    console.log(userCredential.user.uid);
-    this.router.navigate(['/home']);
+  private insertUserData({ uid, email, displayName, photoURL }){
+    // Inserting user data into database
+    this.afs.collection('users').doc(uid).set({ uid, email, displayName, photoURL })
     
-  }
-  getUserState(){
-    return this.afAuth.user;
-  }
-  
+    // Inserting user data to authentication service, for later use
+    
 
+    this.router.navigate(['/home']);
+  }
 
+  register(user){
+    firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+      .then( res => {
+        const newUser = {
+          uid: res.user.uid,
+          email: res.user.email,
+          displayName: user.firstName + " " + user.lastName,
+          photoURL: res.user.photoURL
+        }
+        this.insertUserData(newUser);
+        res.user.updateProfile({
+          displayName: user.firstName + " " + user.lastName
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    //
+  }
 
   login(email: string,password: string){
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
@@ -73,7 +121,9 @@ export class AuthService {
       })
     };
 
-  
+  getUser(): User{
+    return this.userDetails;
+  }
 
   logout(){
     this.afAuth.auth.signOut().then(function() {

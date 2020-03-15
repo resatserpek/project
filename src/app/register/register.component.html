@@ -1,33 +1,36 @@
 <mat-toolbar>
     <span>Register</span>
 </mat-toolbar>
-<div class="row" *ngIf="authError">
-    <mat-label>{{ authError?.message }}</mat-label>
-</div>
-<mat-card-content>
-    <form [formGroup]="registerForm" class="my-form">
-        <mat-form-field class="full-width">
-            <mat-label>First Name</mat-label>
-            <input matInput formControlName="firstName" placeholder="First name" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lastName" placeholder="Last Name" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Location</mat-label>
-            <input matInput formControlName="location" placeholder="Location">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" placeholder="Email" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input matInput formControlName="password" placeholder="Password" type="password" required>
-        </mat-form-field>
-    </form>
-</mat-card-content>
-<mat-card-actions>
-    <button mat-raised-button (click)="createUser(registerForm.value)" [disabled]="!registerForm.valid" color="primary">REGISTER</button>
-</mat-card-actions>
+
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-label>{{ authError?.message }}</mat-label>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="registerForm" class="my-form">
+            <mat-form-field class="full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" type="text" placeholder="First name" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" type="text" placeholder="Last Name" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="text" placeholder="Email" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" placeholder="Password" type="password" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Upload your picture</mat-label>
+                <input matInput formControlName="image" placeholder="Password" type="file" required>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="createUser(registerForm.value)" [disabled]="!registerForm.valid" color="primary">REGISTER</button>
+    </mat-card-actions>
+</mat-card>

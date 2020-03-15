@@ -11,9 +11,9 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
-    location: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
+    image: new FormControl('')
   });
 
   authError: any;
@@ -26,7 +26,6 @@ export class RegisterComponent implements OnInit {
   }
 
   createUser(userRegForm){
-
-    this.auth.createUser(userRegForm);
+    this.auth.register(userRegForm);
   }
 }

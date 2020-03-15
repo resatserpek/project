@@ -1,6 +1,7 @@
 export interface Post {
-    id: string;
-    username: string;
+    userID: string;
+    displayName: string;
     content: string;
-    media?: string;
+    mediaURL?: string;
+    time: string;
   }

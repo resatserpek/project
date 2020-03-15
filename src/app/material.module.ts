@@ -11,7 +11,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const modules = [
   CommonModule,
@@ -25,7 +26,8 @@ const modules = [
   MatCardModule,
   MatTabsModule,
   MatProgressBarModule,
-  MatSliderModule
+  MatSliderModule,
+  MatGridListModule
 ];
 
 @NgModule({

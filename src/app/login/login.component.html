@@ -2,9 +2,7 @@
     <span>Login</span>
 </mat-toolbar>
 
-<div class="row" *ngIf="authError">
-    <mat-label>{{ authError?.message }}</mat-label>
-</div>
+
 
 
 <mat-card class="my-card">
@@ -16,12 +14,14 @@
             </mat-form-field>
             <mat-form-field class="full-width">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" placeholder="Password" required>
+                <input matInput formControlName="password" type="password" placeholder="Password" required>
             </mat-form-field>
         </form>
     </mat-card-content>
+    <div class="row" *ngIf="authError">
+        <mat-label><span>{{ authError?.message }}</span></mat-label>
+    </div>
     <mat-card-actions>
         <button mat-raised-button (click)="login(loginForm)" [disabled]="!loginForm.valid" color="primary">LOGIN</button>
-        <button mat-raised-button (click)="login(loginForm)" color="primary">LOGIN</button>
     </mat-card-actions>
 </mat-card>

@@ -1,14 +1,11 @@
 <mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-
     <mat-card-content>
-        <mat-form-field floatLabel="never">
-            <textarea matInput placeholder="Share something.."></textarea>
-        </mat-form-field>
+        <form [formGroup]="newPost">
+            <mat-form-field floatLabel="never" class="full-width">
+                <input matInput formControlName="content" rows="10" placeholder="Share something..">
+            </mat-form-field>
+        </form>
+
     </mat-card-content>
     <mat-card-actions>
         <div class="left-actions">
@@ -21,7 +18,7 @@
         </div>
         <div class="spacer"></div>
         <div class="right-actions">
-            <button mat-raised-button>SHARE</button>
+            <button mat-raised-button (click)="share(newPost)">SHARE</button>
         </div>
     </mat-card-actions>
 </mat-card>

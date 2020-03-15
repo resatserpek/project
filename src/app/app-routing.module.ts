@@ -7,6 +7,9 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {  ProfileComponent } from './profile/profile.component'; 
+import { ChatComponent } from './chat/chat.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'register', component: RegisterComponent},
@@ -14,6 +17,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'discover', component: DiscoverComponent},
   { path: 'marketplace', component: MarketplaceComponent},
+  { path: 'profile', component: ProfileComponent},
+  { path: 'messages', component: ChatComponent},
   { path: 'questions', component: QuestionsComponent}
 ];
 
@@ -22,4 +27,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ HomeComponent, DiscoverComponent, MarketplaceComponent, QuestionsComponent]
+export const routingComponents = [ HomeComponent, DiscoverComponent, MarketplaceComponent, QuestionsComponent, ProfileComponent]

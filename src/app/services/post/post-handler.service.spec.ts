@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataHandlerService } from './data-handler.service';
+import { PostHandlerService } from './post-handler.service';
 
-describe('DataHandlerService', () => {
+describe('PostHandlerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DataHandlerService = TestBed.get(DataHandlerService);
+    const service: PostHandlerService = TestBed.get(PostHandlerService);
     expect(service).toBeTruthy();
   });
 });
