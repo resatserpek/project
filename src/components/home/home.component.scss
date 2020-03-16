@@ -1,0 +1,17 @@
+.home-content {
+    margin: 0 0 3rem 0;
+    .spacer {
+        flex: 1 1 auto;
+    }
+}
+
+button {
+    display: block;
+}
+
+mat-drawer-container {
+    background: inherit;
+    mat-drawer {
+        background: inherit;
+    }
+}

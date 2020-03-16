@@ -1,7 +1,7 @@
 //https://fireship.io/lessons/angularfire-google-oauth/
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../../models/user';
+import { User } from '../../models/user';
 
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -11,39 +11,39 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnDestroy {
-  ngOnDestroy(): void {
-    this.user$ = null;
-    this.eventAuthError$ = null;
+export class AuthService implements OnInit {
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
   }
+
   //https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
-  private user$: Observable<firebase.User>;
+  user$: Observable<firebase.User>;
   private userDetails: firebase.User = null;
   
   private eventAuthError = new BehaviorSubject<string>("");
   eventAuthError$ = this.eventAuthError.asObservable();
 
-
-
+  //https://fireship.io/lessons/angularfire-google-oauth/
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router
     ) {   
-      this.user$ = afAuth.authState;
-      this.user$.subscribe(
-        (user) => {
-          if (user) {
+      this.user$ = afAuth.authState.pipe(
+        switchMap(user => {
+          if(user){
             this.userDetails = user;
-            console.log("Yes")
+            return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else{
-            this.userDetails = null;
+            return of(null);
           }
-        }
-      );  
+        })
+
+      )  
     }
 
 
@@ -75,6 +75,7 @@ export class AuthService implements OnDestroy {
   signOut(){
     this.afAuth.auth.signOut()
     .then((res) => this.router.navigate(['/']));
+    console.log(`Signed out`)
   }
 
 

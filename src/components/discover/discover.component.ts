@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataHandlerService } from '../services/data/data-handler.service';
+
 
 
 @Component({
@@ -9,8 +9,8 @@ import { DataHandlerService } from '../services/data/data-handler.service';
 })
 export class DiscoverComponent implements OnInit {
   posts: any;
-  constructor(private data: DataHandlerService) {
-    this.posts = data.getPosts;
+  constructor() {
+
   }
 
   ngOnInit() {

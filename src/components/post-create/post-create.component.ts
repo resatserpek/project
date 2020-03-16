@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PostHandlerService } from '../services/post/post-handler.service';
-import { AuthService } from '../services/user/auth.service';
+import { PostHandlerService } from '../../services/post/post-handler.service';
+
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 

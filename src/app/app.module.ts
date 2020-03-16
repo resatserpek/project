@@ -7,13 +7,13 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { MarketplaceComponent } from './marketplace/marketplace.component';
-import { QuestionsComponent } from './questions/questions.component';
+import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
+import { MarketplaceComponent } from '../components/marketplace/marketplace.component';
+import { QuestionsComponent } from '../components/questions/questions.component';
 
 
-import { PostCardComponent } from './post-card/post-card.component';
-import { PostCreateComponent } from './post-create/post-create.component';
+import { PostCardComponent } from '../components/post-card/post-card.component';
+import { PostCreateComponent } from '../components/post-create/post-create.component';
 import { MaterialModule } from './material.module';
 
 import { environment } from '../environments/environment';
@@ -22,13 +22,14 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from '../components/login/login.component';
+import { RegisterComponent } from '../components/register/register.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './services/user/auth.service';
-import { ProfileComponent } from './profile/profile.component';
-import { ChatComponent } from './chat/chat.component';
+import { AuthService } from '../services/user/auth.service';
+import { ProfileComponent } from '../components/profile/profile.component';
+import { ChatComponent } from '../components/chat/chat.component';
+import { PostHandlerService } from 'src/services/post/post-handler.service';
 @NgModule({
   declarations: [
     AppComponent,

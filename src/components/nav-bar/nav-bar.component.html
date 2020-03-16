@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
     <span>Project</span>
-    <a mat-button routerLink="home" *ngIf="auth.checkAuth()">
+    <a mat-button routerLink="home" *ngIf="auth.user$">
         <mat-icon aria-hidden="false">home</mat-icon>
         Home
     </a>
@@ -20,7 +20,20 @@
     <div class="spacer"></div>
 
 
-    <div *ngIf="auth.checkAuth()">
+    <div *ngIf="auth.user$ | async; then authenticated else guest">
+
+    </div>
+
+    <ng-template #guest>
+        <a mat-button routerLink="login">
+            Login 
+        </a>
+        <a mat-button routerLink="register">
+            Register
+        </a>
+    </ng-template>
+
+    <ng-template #authenticated>
         <a mat-button routerLink="profile">
             <mat-icon aria-hidden="false">person</mat-icon>
         </a>
@@ -30,15 +43,7 @@
         <a mat-button (click)="auth.signOut()">
            Sign Out
         </a>
-    </div>
+    </ng-template>
 
-    <div *ngIf="!auth.checkAuth()">
-        <a mat-button routerLink="login">
-            Login 
-        </a>
-        <a mat-button routerLink="register">
-            Register
-        </a>
-    </div>
 
 </mat-toolbar>
