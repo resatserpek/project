@@ -12,14 +12,14 @@ import { ChatComponent } from '../components/chat/chat.component';
 import { AuthGuard } from 'src/services/auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
   { path: 'discover', component: DiscoverComponent},
   { path: 'marketplace', component: MarketplaceComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], canLoad:[AuthGuard]},
-  { path: 'messages', component: ChatComponent},
+  { path: 'messages', component: ChatComponent, canActivate: [AuthGuard]},
   { path: 'questions', component: QuestionsComponent}
 ];
 

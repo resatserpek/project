@@ -126,11 +126,4 @@ export class AuthService implements OnInit {
     return this.userDetails;
   }
 
-  logout(){
-    this.afAuth.auth.signOut().then(function() {
-      // Sign-out successful.
-    }).catch(function(error) {
-      console.log(error);
-    });
-  }
 }

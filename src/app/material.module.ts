@@ -13,7 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 const modules = [
   CommonModule,
   MatButtonModule,
@@ -27,7 +27,8 @@ const modules = [
   MatTabsModule,
   MatProgressBarModule,
   MatSliderModule,
-  MatGridListModule
+  MatGridListModule,
+  ScrollingModule
 ];
 
 @NgModule({

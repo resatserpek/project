@@ -1,1 +1,18 @@
-<p>chat works!</p>
+<mat-grid-list cols="5" rowHeight="3rem">
+    <mat-grid-tile class="contacts" [colspan]="1" [rowspan]="11">
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+
+        </cdk-virtual-scroll-viewport>
+    </mat-grid-tile>
+    <mat-grid-tile class="message" [colspan]="4" [rowspan]="10">
+        <textarea matInput cols="20" rows="25">s</textarea>
+    </mat-grid-tile>
+    <mat-grid-tile class="message" [colspan]="4" [rowspan]="1">
+        <form [formGroup]="message" class="my-form">
+            <mat-form-field class="full-width" style="width: 100% !important">
+                <input cols="2" rows="2">
+            </mat-form-field>
+        </form>
+        <button mat-raised-button>SEND</button>
+    </mat-grid-tile>
+</mat-grid-list>
