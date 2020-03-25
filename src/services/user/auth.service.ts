@@ -21,8 +21,8 @@ export class AuthService implements OnInit {
   }
 
   //https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
-  user$: Observable<firebase.User>;
-  private userDetails: firebase.User = null;
+  user$: Observable<User>;
+  private userDetails: User = null;
   
   private eventAuthError = new BehaviorSubject<string>("");
   eventAuthError$ = this.eventAuthError.asObservable();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-marketplace',
@@ -12,4 +12,17 @@ export class MarketplaceComponent implements OnInit {
   ngOnInit() {
   }
 
+  counterValue = 0;
+
+  @Input()
+  get counter() {
+    return this.counterValue;
+  }
+
+  @Output() counterChange = new EventEmitter();
+
+  set counter(val) {
+    this.counterValue = val;
+    this.counterChange.emit(this.counterValue);
+  }
 }

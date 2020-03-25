@@ -30,6 +30,7 @@ import { AuthService } from '../services/user/auth.service';
 import { ProfileComponent } from '../components/profile/profile.component';
 import { ChatComponent } from '../components/chat/chat.component';
 import { PostHandlerService } from 'src/services/post/post-handler.service';
+import { ContactCardComponent } from '../components/contact-card/contact-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { PostHandlerService } from 'src/services/post/post-handler.service';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    ChatComponent
+    ChatComponent,
+    ContactCardComponent
   ],
   imports: [
     BrowserModule,

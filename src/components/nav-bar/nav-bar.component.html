@@ -1,11 +1,13 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
 
+    <span>Project</span>
 
     <div *ngIf="auth.user$ | async; then authenticated else guest">
 
     </div>
 
     <ng-template #guest>
+        <div class="spacer"></div>
         <a mat-button routerLink="login">
             Login 
         </a>
@@ -15,7 +17,7 @@
     </ng-template>
 
     <ng-template #authenticated>
-        <span>Project</span>
+
         <a mat-button routerLink="home">
             <mat-icon aria-hidden="false">home</mat-icon>
             Home

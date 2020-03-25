@@ -21,7 +21,6 @@ export class NavBarComponent {
 
  
   constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService) {
-    this.auth = auth;
 
   }
 }
