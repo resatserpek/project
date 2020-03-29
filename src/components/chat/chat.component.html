@@ -1,21 +1,43 @@
-<mat-grid-list cols="5" rowHeight="3rem">
-    <mat-grid-tile class="contacts" [colspan]="1" [rowspan]="11">
-        <app-contact-card *ngFor="let chat of chats$ | async" [chat]=chat></app-contact-card>
-    </mat-grid-tile>
+<mat-card>
+    <mat-grid-list cols="5" rowHeight="3rem">
+        <mat-grid-tile class="contacts" [colspan]="1" [rowspan]="11">
+            <div class="contactList">
+                <app-contact-card *ngFor="let chat of chats$ | async" [chat]=chat></app-contact-card>
+                <app-contact-card *ngFor="let chat of chats$ | async" [chat]=chat></app-contact-card>
+            </div>
+
+        </mat-grid-tile>
 
 
 
-    <mat-grid-tile class="message" [colspan]="4" [rowspan]="10">
-        <textarea matInput cols="20" rows="25">s</textarea>
-    </mat-grid-tile>
+        <mat-grid-tile class="message" [colspan]="4" [rowspan]="10">
+
+            <div class="example-container mat-elevation-z8">
+                <mat-card class="example-card">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" class="mat-elevation-z2">
+                            <h6 matLine><strong> Resat Serpek:</strong></h6>
+                            <p matLine>Hello</p>
+
+                        </mat-list-item>
+
+                        <mat-list-item role="listitem" class="mat-elevation-z2">Item 2</mat-list-item>
+                        <mat-list-item role="listitem" class="mat-elevation-z2">Item 3</mat-list-item>
+                    </mat-list>
+                </mat-card>
+            </div>
 
 
-    <mat-grid-tile class="message" [colspan]="4" [rowspan]="1">
-        <form [formGroup]="message" class="my-form">
-            <mat-form-field class="full-width" style="width: 100% !important">
-                <input matInput formControlName="content" cols="2" rows="2" required>
-            </mat-form-field>
-        </form>
-        <button mat-raised-button (click)="sendMessage()">SEND</button>
-    </mat-grid-tile>
-</mat-grid-list>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile class="message" [colspan]="4" [rowspan]="1">
+            <form [formGroup]="message" (keyup.enter)="sendMessage()" class="my-form">
+                <mat-form-field class="full-width">
+                    <input matInput formControlName="content" placeholder="Type a message..">
+                </mat-form-field>
+            </form>
+
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>

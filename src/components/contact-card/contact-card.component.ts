@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChatComponent } from '../chat/chat.component';
 import { Chat } from 'src/models/chat';
+import { FileUploadService } from 'src/services/upload/file-upload.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-contact-card',
@@ -10,11 +12,14 @@ import { Chat } from 'src/models/chat';
 export class ContactCardComponent implements OnInit {
 
   @Input() chat: Chat;
-  constructor() {
+  imageUrl: Observable<string|null>
+  constructor(private imageService: FileUploadService) {
     
   }
 
-  ngOnInit() {console.log(this.chat)
+  ngOnInit() {
+    console.log(this.chat)
+    this.imageUrl = this.imageService.getMedia(this.chat.lastMessage[2]);
   }
 
 }

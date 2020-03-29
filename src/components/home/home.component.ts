@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostHandlerService } from '../../services/post/post-handler.service';
 import { Post } from 'src/models/post';
 import { Observable } from 'rxjs';
@@ -8,11 +8,13 @@ import { Observable } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
   
   posts: Observable<Post[]>; 
   
-  constructor(private postService: PostHandlerService) { 
+  constructor(private postService: PostHandlerService) {}
+
+  ngOnInit(): void {
     this.posts = this.postService.posts;
   }
 

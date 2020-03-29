@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'discover', component: DiscoverComponent},
   { path: 'marketplace', component: MarketplaceComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], canLoad:[AuthGuard]},
-  { path: 'messages', component: ChatComponent, canActivate: [AuthGuard]},
+  { path: 'messages', component: ChatComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
   { path: 'questions', component: QuestionsComponent}
 ];
 

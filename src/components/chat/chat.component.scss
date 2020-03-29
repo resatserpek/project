@@ -1,15 +1,41 @@
 mat-grid-tile {
-    background: lightblue;
+    background: inherit;
 }
 
 mat-grid-tile.message {
-    background: red;
+    background: inherit;
 }
 
-mat-grid-tile.form {
-    background: black;
+form {
+    width: 100%;
+    height: 100%
 }
 
 textarea {
     background: whitesmoke;
+}
+
+table {
+    width: 100%;
+}
+
+.example-container {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.contactList {
+    height: 100%;
+    width: 100%;
+}
+
+.example-card {
+    width: 96%;
+    height: 95%;
+}
+
+.full-width {
+    width: 100% !important;
+    height: 100% !important;
 }

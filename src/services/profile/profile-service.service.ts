@@ -9,12 +9,18 @@ import { Post } from 'src/models/post';
 import { PostHandlerService } from '../post/post-handler.service';
 import { AngularFireUploadTask } from '@angular/fire/storage';
 import { map } from 'rxjs/operators';
+import { FileUploadService } from '../upload/file-upload.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
+  getProfilePic() {
+    var url: string = this.auth.getUser().photoURL;
+    console.log(url);
+    return this.fileManager.getMedia(url); 
+  }
 
   private profile: AngularFirestoreDocument<User>;
   user: Observable<User>
@@ -22,7 +28,7 @@ export class ProfileService {
   private userPosts: AngularFirestoreCollection<Post>
   posts: Observable<Post[]>
   
-  constructor(private afs: AngularFirestore, private auth: AuthService) { 
+  constructor(private afs: AngularFirestore, private auth: AuthService, private fileManager: FileUploadService) { 
     
     var userID = this.auth.getUser().uid;
 

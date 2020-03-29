@@ -3,11 +3,11 @@
         <form>
             <mat-form-field class="example-full-width" floatLabel="never">
                 <mat-label>Search for songs, artists, events and more..</mat-label>
-                <input matInput placeholder="Search for songs, artists, events and more..">
+                <input matInput (keydown.enter)="search()" placeholder="Search for songs, artists, events and more..">
             </mat-form-field>
         </form>
     </div>
-    <div hidden class="discover-content">
+    <div *ngIf="clicked" class="discover-content">
         <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
             <mat-tab label="All">
                 All

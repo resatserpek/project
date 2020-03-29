@@ -1,7 +1,9 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-</mat-card>
+<a>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"><img mat-card-image [src]="imageUrl | async"></div>
+            <mat-card-title>{{chat.lastMessage[0]}}</mat-card-title>
+            <mat-card-subtitle>{{chat.lastMessage[1]}}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+</a>

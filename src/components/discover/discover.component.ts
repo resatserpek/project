@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./discover.component.scss']
 })
 export class DiscoverComponent implements OnInit {
-  posts: any;
+  clicked: boolean;
+
+
   constructor() {
 
   }
@@ -17,4 +19,7 @@ export class DiscoverComponent implements OnInit {
     
   }
 
+  search(){
+    this.clicked = !this.clicked
+  }
 }
