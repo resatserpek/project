@@ -22,15 +22,18 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { ChatAppModule } from "./chat-app/chat-app.module";
+
 import { LoginComponent } from '../components/login/login.component';
 import { RegisterComponent } from '../components/register/register.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../services/user/auth.service';
 import { ProfileComponent } from '../components/profile/profile.component';
-import { ChatComponent } from '../components/chat/chat.component';
-import { PostHandlerService } from 'src/services/post/post-handler.service';
+
 import { ContactCardComponent } from '../components/contact-card/contact-card.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,16 +46,17 @@ import { ContactCardComponent } from '../components/contact-card/contact-card.co
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    ChatComponent,
     ContactCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
+    SharedModule,
+    
+    ChatAppModule,
+
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth

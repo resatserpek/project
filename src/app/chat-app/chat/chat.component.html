@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-grid-list cols="5" rowHeight="3rem">
+        <mat-grid-tile class="contacts" [colspan]="1" [rowspan]="11">
+            <app-contact-list class="list-container" [chats$]="chats$"></app-contact-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="4" [rowspan]="11">
+            <div class="display">
+                <router-outlet></router-outlet>
+            </div>
+
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</mat-card>

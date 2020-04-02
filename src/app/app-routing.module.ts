@@ -8,8 +8,10 @@ import { QuestionsComponent } from '../components/questions/questions.component'
 import { LoginComponent } from '../components/login/login.component';
 import { RegisterComponent } from '../components/register/register.component';
 import { ProfileComponent } from '../components/profile/profile.component'; 
-import { ChatComponent } from '../components/chat/chat.component';
+
 import { AuthGuard } from 'src/services/auth/auth.guard';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,7 +21,13 @@ const routes: Routes = [
   { path: 'discover', component: DiscoverComponent},
   { path: 'marketplace', component: MarketplaceComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], canLoad:[AuthGuard]},
-  { path: 'messages', component: ChatComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
+  //{ path: 'messages', component: ChatComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
+  { 
+    path: 'messages',
+    loadChildren: () => import('./chat-app/chat-app.module').then(m => m.ChatAppModule),
+    canActivate: [AuthGuard], 
+    canLoad: [AuthGuard]
+  },
   { path: 'questions', component: QuestionsComponent}
 ];
 
