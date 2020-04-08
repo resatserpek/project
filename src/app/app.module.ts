@@ -34,6 +34,7 @@ import { ProfileComponent } from '../components/profile/profile.component';
 
 import { ContactCardComponent } from '../components/contact-card/contact-card.component';
 import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -4,17 +4,30 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 
-const modules = [
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
+
+import { UrlPipe } from "../url.pipe";
+
+const importModules = [
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
-  MaterialModule
+  MaterialModule,
+  NgxAudioPlayerModule
+]
 
+const exportModules = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MaterialModule,
+  NgxAudioPlayerModule,
+  UrlPipe
 ]
 
 @NgModule({
-  declarations: [],
-  imports: modules,
-  exports: modules
+  declarations: [UrlPipe],
+  imports: importModules,
+  exports: exportModules
 })
 export class SharedModule { }

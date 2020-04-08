@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataHandlerService } from './data-handler.service';
+import { MarketplaceService } from './marketplace.service';
 
-describe('DataHandlerService', () => {
+describe('MarketplaceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DataHandlerService = TestBed.get(DataHandlerService);
+    const service: MarketplaceService = TestBed.get(MarketplaceService);
     expect(service).toBeTruthy();
   });
 });

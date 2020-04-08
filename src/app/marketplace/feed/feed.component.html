@@ -1,0 +1,71 @@
+<mat-grid-list cols="5" rowHeight="3.5rem">
+    <!-- search query-->
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <div class="search">
+            <form class="my-form">
+                <mat-form-field class="full-width">
+                    <input matInput autocomplete="off" placeholder="Search..">
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-grid-tile>
+
+    <!-- sell button-->
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button mat-raised-button color="primary" routerLink='sell'>SELL</button>
+    </mat-grid-tile>
+
+    <!-- item list display-->
+    <mat-grid-tile [colspan]="4" [rowspan]="9">
+        <div class="itemContainer">
+            <mat-grid-list cols="3" rowHeight="4rem">
+                <a *ngFor="let item of items$ | async" [routerLink]="['item',item.id]">
+                    <mat-grid-tile [colspan]="1" [rowspan]="5">
+                        <mat-grid-tile-header>
+                            {{item.title}}
+                        </mat-grid-tile-header>
+                        <img [src]="item.url | url | async">
+                        <mat-grid-tile-footer>
+                            $ {{item.price}}
+                        </mat-grid-tile-footer>
+
+                    </mat-grid-tile>
+                </a>
+            </mat-grid-list>
+        </div>
+
+    </mat-grid-tile>
+
+    <!-- category filter-->
+    <mat-grid-tile [colspan]="1" [rowspan]="5">
+        <div class="sideSelector">
+            <div class="head">
+                <h4>Categories:</h4>
+            </div>
+
+            <div class="option">
+                <mat-list role="list">
+                    <mat-list-item role="listitem"> <button mat-button>Instrument</button></mat-list-item>
+                    <mat-list-item role="listitem">Item 2</mat-list-item>
+                    <mat-list-item role="listitem">Item 3</mat-list-item>
+                    <mat-list-item role="listitem">Item 1</mat-list-item>
+                </mat-list>
+            </div>
+        </div>
+    </mat-grid-tile>
+
+    <!-- price filter-->
+    <mat-grid-tile [colspan]="1" [rowspan]="4">
+        <div class="sideSelector">
+            <div class="head">
+                <h4>Price Range:</h4>
+            </div>
+            <div class="option">
+                <mat-radio-group class="example-radio-group">
+                    <mat-radio-button class="example-radio-button" value="1">0 - 100 $</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" value="2">Option 2</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

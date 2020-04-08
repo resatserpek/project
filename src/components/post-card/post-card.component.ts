@@ -10,9 +10,8 @@ import { Post } from 'src/models/post';
   styleUrls: ['./post-card.component.scss']
 })
 export class PostCardComponent implements OnInit {
-  @Input() postInstance: Post;
   
-
+  @Input() postInstance: Post;
   constructor() {
     
   }

@@ -1,7 +1,7 @@
 <mat-card class="example-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{postInstance.displayName}}</mat-card-title>
+        <div mat-card-avatar><img></div>
+        <mat-card-title><a matLink routerLink="../user/23746">{{postInstance.displayName}}</a></mat-card-title>
         <mat-card-subtitle>{{postInstance.time.seconds * 1000 | date : 'medium'}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -16,9 +16,6 @@
         <a mat-button><i class="material-icons">
                     thumb_up
                     </i></a>
-        <a mat-button><i class="material-icons">
-                    thumb_down
-                </i></a>
         <a mat-button><i class="material-icons">
                         comment
                         </i></a>

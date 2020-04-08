@@ -7,7 +7,7 @@ import { AuthService  } from "../services/user/auth.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Project';
+  title = 'SongBook';
 
   private loggedIn: boolean;
   private auth: AuthService;

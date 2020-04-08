@@ -3,7 +3,7 @@
         <mat-grid-list cols="3" rowHeight="6rem">
             <mat-grid-tile [colspan]="1" [rowspan]="3">
 
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <img mat-card-image [src]="(current | async)?.photoURL | url | async" alt="Photo of a Shiba Inu">
 
             </mat-grid-tile>
 

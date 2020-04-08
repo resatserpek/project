@@ -1,0 +1,23 @@
+<mat-toolbar>Sell an item</mat-toolbar>
+
+<div class="formField">
+    <form [formGroup]="itemForm" class="my-form">
+        <mat-form-field class="full-width">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" type="text" placeholder="First name" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" type="text" placeholder="Last Name" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="text" placeholder="Email" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" placeholder="Password" type="password" required>
+        </mat-form-field>
+
+    </form>
+</div>

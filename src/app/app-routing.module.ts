@@ -14,21 +14,24 @@ import { AuthGuard } from 'src/services/auth/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
   { path: 'discover', component: DiscoverComponent},
-  { path: 'marketplace', component: MarketplaceComponent},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], canLoad:[AuthGuard]},
-  //{ path: 'messages', component: ChatComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
+  { 
+    path: 'marketplace', 
+    loadChildren: () => import('./marketplace/marketplace.module').then(m => m.MarketplaceModule),    
+  },
   { 
     path: 'messages',
     loadChildren: () => import('./chat-app/chat-app.module').then(m => m.ChatAppModule),
     canActivate: [AuthGuard], 
     canLoad: [AuthGuard]
   },
-  { path: 'questions', component: QuestionsComponent}
+  { path: 'questions', component: QuestionsComponent},
+  { path: 'user/:id', loadChildren: () => import('./userpage/userpage.module').then(m => m.UserpageModule),pathMatch: 'full'}
 ];
 
 @NgModule({

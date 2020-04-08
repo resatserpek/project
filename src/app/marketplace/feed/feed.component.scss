@@ -1,0 +1,48 @@
+mat-grid-tile {
+    background: rgba(255, 255, 255, 0.87);
+}
+
+.full-width {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.search {
+    width: 95%;
+    height: 90%;
+    overflow: hidden;
+}
+
+.sideSelector {
+    height: 100%;
+    width: 90%;
+}
+
+.head {
+    width: 100%;
+    height: 10%;
+}
+
+.option {
+    width: 100%;
+    height: 82%;
+    overflow-y: auto;
+}
+
+//https://material.angular.io/components/radio/examples
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+
+.itemContainer {
+    //background-color: red;
+    height: 95%;
+    width: 97%;
+    overflow-y: scroll;
+}
