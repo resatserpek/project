@@ -28,12 +28,14 @@ import { ChatAppModule } from "./chat-app/chat-app.module";
 import { LoginComponent } from '../components/login/login.component';
 import { RegisterComponent } from '../components/register/register.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { AuthService } from '../services/user/auth.service';
 import { ProfileComponent } from '../components/profile/profile.component';
 
 import { ContactCardComponent } from '../components/contact-card/contact-card.component';
 import { SharedModule } from './shared/shared.module';
+import { HomeModule } from './home/home.module';
+import { DiscoverModule } from './discover/discover.module';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,9 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     
     ChatAppModule,
+    HomeModule,
+    ChatAppModule,
+    DiscoverModule,
 
 
     AngularFireModule.initializeApp(environment.firebase),

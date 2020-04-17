@@ -3,5 +3,6 @@ export interface Post {
     displayName: string;
     content: string;
     mediaURL?: string;
-    time: string;
+    time: firebase.firestore.Timestamp;
+    isSong: boolean;
   }

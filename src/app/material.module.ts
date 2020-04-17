@@ -16,7 +16,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {MatTableModule} from '@angular/material/table';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
+import { MatFileUploadModule } from 'angular-material-fileupload';
 
 const modules = [
   CommonModule,
@@ -34,7 +37,10 @@ const modules = [
   MatGridListModule,
   ScrollingModule,
   MatTableModule,
-  MatRadioModule
+  MatRadioModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatFileUploadModule
 ];
 
 @NgModule({

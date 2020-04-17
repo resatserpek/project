@@ -1,0 +1,34 @@
+<mat-grid-list cols="1" rowHeight="6rem">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="search">
+            <form class="my-form">
+                <mat-form-field class="full-width">
+                    <input matInput autocomplete="off" [(ngModel)]="query" [ngModelOptions]="{standalone: true}" type="search" placeholder="Search for songs, users and more...">
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="query !== ''" [colspan]=" 1 " [rowspan]="5 ">
+
+        <br>
+        <div class="result ">
+            <p>Search results for {{query}}</p>
+            <hr>
+            <mat-tab-group>
+                <mat-tab label="All">
+
+                </mat-tab>
+                <mat-tab label="Songs">
+
+                </mat-tab>
+                <mat-tab label="Users">
+
+                </mat-tab>
+                <mat-tab label="Posts">
+
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+
+    </mat-grid-tile>
+</mat-grid-list>

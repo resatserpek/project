@@ -8,6 +8,7 @@ import { AuthService } from '../user/auth.service';
 import { User } from 'src/models/user';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { FileUploadService } from '../upload/file-upload.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class MarketplaceService {
   private items: AngularFirestoreCollection<Item>;
   items$: Observable<Item[]>;
 
-  constructor(private afs: AngularFirestore, private auth: AuthService, private router: Router) { 
+  constructor(private afs: AngularFirestore, private auth: AuthService, private fileUpload: FileUploadService,private router: Router) { 
     this.items = this.afs.collection('items');
     this.items$ = this.items.snapshotChanges().pipe(
       map(actions => actions.map( a =>{
@@ -28,22 +29,22 @@ export class MarketplaceService {
     );
   }
 
-  create(item){
+  create(item: Item, fileName: string,file: File){
     if(this.auth.checkAuth()){
-      var timestamp = firebase.firestore.Timestamp.fromDate(new Date());
-      var user: User = this.auth.getUser();
-
       this.afs.collection('items').add({
         categories: item.categories,
-        date: timestamp,
+        date: item.date,
         description: item.description,
-        displayName: user.displayName,
+        displayName: item.displayName,
         price: item.price,
         title: item.title,
         url: item.url,
-        userId: user.uid,
-        userPic: user.photoURL        
+        userId: item.userId,
+        userPic: item.userPic        
       })
+
+      this.fileUpload.upload(fileName, file)
+      this.router.navigate(['/marketplace']);
     }else{
       this.router.navigate(['/login']);
     }

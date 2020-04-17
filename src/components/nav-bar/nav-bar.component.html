@@ -1,13 +1,13 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
 
-    <span>SongBook</span>
+
 
     <div *ngIf="auth.user$ | async; then authenticated else guest">
 
     </div>
 
     <ng-template #guest>
-        <div class="spacer"></div>
+        <div class="spacer"><span>SongBook</span></div>
         <a mat-button routerLink="login">
             Login 
         </a>
@@ -17,35 +17,38 @@
     </ng-template>
 
     <ng-template #authenticated>
+        <div>
+            <a mat-button routerLink="home">
+                <mat-icon aria-hidden="false">home</mat-icon>
 
-        <a mat-button routerLink="home">
-            <mat-icon aria-hidden="false">home</mat-icon>
-            Home
-        </a>
-        <a mat-button routerLink="discover" routerLinkActive="active"><i class="material-icons">
+            </a>
+            <a mat-button routerLink="discover" routerLinkActive="active"><i class="material-icons">
             search
-            </i>Discover</a>
-        <a mat-button routerLink="marketplace" routerLinkActive="active"><i class="material-icons">
+            </i></a>
+            <a mat-button routerLink="marketplace" routerLinkActive="active"><i class="material-icons">
                 calendar_today
-                </i>Events</a>
-        <a mat-button routerLink="marketplace" routerLinkActive="active"><i class="material-icons">
+                </i></a>
+            <a mat-button routerLink="marketplace" routerLinkActive="active"><i class="material-icons">
             store
-            </i>Marketplace</a>
-        <a mat-button routerLink="questions" routerLinkActive="active"><i class="material-icons">
+            </i></a>
+            <a mat-button routerLink="questions" routerLinkActive="active"><i class="material-icons">
             question_answer
-            </i>Q&A</a>
+            </i></a>
+        </div>
 
-        <div class="spacer"></div>
-
-        <a mat-button routerLink="profile">
-            <mat-icon aria-hidden="false">person</mat-icon>
-        </a>
-        <a mat-button routerLink="messages">
-            <mat-icon aria-hidden="false">email</mat-icon>
-        </a>
-        <a mat-button (click)="auth.signOut()">
+        <div class="spacer"><span>SongBook</span></div>
+        <div>
+            <a mat-button routerLink="profile">
+                <mat-icon aria-hidden="false">person</mat-icon>
+            </a>
+            <a mat-button routerLink="messages">
+                <mat-icon aria-hidden="false">email</mat-icon>
+            </a>
+            <a mat-button (click)="auth.signOut()">
            Sign Out
         </a>
+        </div>
+
     </ng-template>
 
 

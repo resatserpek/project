@@ -15,4 +15,8 @@ export class FileUploadService {
     const ref = this.storage.ref(url);
     return ref.getDownloadURL();
   }
+
+  upload(fileName: string, file: File){
+    this.storage.upload(fileName, file);
+  }
 }

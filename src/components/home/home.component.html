@@ -1,14 +1,10 @@
-<mat-drawer-container class="example-container">
-    <mat-drawer class="button-list" mode="side" opened>
-        <button mat-button class="active">All</button>
-        <button mat-button>Songs</button>
-    </mat-drawer>
-    <mat-drawer-content>
-        <div class="share">
-            <app-post-create></app-post-create>
+<div class="share">
+    <app-post-create></app-post-create>
+</div>
+<div class="home-content">
+    <div *ngFor="let post of posts | async">
+        <div *ngFor="let following of followings | async">
+            <app-post-card *ngIf="post.userID === following.followingId || post.userID === following.userId" [postInstance]="post"></app-post-card>
         </div>
-        <div class="home-content">
-            <app-post-card *ngFor="let post of posts | async" [postInstance]="post"></app-post-card>
-        </div>
-    </mat-drawer-content>
-</mat-drawer-container>
+    </div>
+</div>

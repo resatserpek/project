@@ -1,0 +1,28 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar><img></div>
+        <mat-card-title><a matLink [routerLink]="['../user', postInstance.userID]">{{postInstance.displayName}}</a></mat-card-title>
+        <mat-card-subtitle>{{postInstance.time.seconds * 1000 | date : 'medium'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p *ngIf="!postInstance.isSong">
+            {{postInstance.content}}
+        </p>
+        <mat-basic-audio-player *ngIf="postInstance.isSong" [audioUrl]="postInstance.mediaURL | url | async" [title]="postInstance.content" [autoPlay]="false" muted="muted" [displayTitle]="true" [displayVolumeControls]="true"></mat-basic-audio-player>
+    </mat-card-content>
+    <img *ngIf="(postInstance.mediaURL !== '') && !postInstance.isSong " [src]="postInstance.mediaURL | url | async">
+
+    <mat-card-actions>
+        <a mat-button><i class="material-icons">
+                    thumb_up
+                    </i></a>
+        <a mat-button><i class="material-icons">
+                        comment
+                        </i></a>
+        <a mat-button>
+            <i class="material-icons">
+                    share
+            </i>
+        </a>
+    </mat-card-actions>
+</mat-card>

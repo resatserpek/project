@@ -3,7 +3,7 @@ export interface Item{
     date: firebase.firestore.Timestamp;
     description: string;
     displayName: string;
-    id: string;
+    id?: string;
     price: number;
     title: string;
     url: string;    

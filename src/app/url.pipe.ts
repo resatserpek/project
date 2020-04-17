@@ -14,7 +14,7 @@ export class UrlPipe implements PipeTransform {
   //https://www.youtube.com/watch?v=wcl9HUxM0tI&t=473s
   transform(value: any, ...args: any[]): any {
     if(value === ''){
-      return null;
+      return '';
     }
     this.imageUrl = this.image.getMedia(value);
     return this.imageUrl;

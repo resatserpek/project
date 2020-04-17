@@ -6,7 +6,9 @@ import { MaterialModule } from '../material.module';
 
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
+
 import { UrlPipe } from "../url.pipe";
+
 
 const importModules = [
   CommonModule,
@@ -28,6 +30,7 @@ const exportModules = [
 @NgModule({
   declarations: [UrlPipe],
   imports: importModules,
-  exports: exportModules
+  exports: exportModules,
+  providers:[]
 })
 export class SharedModule { }

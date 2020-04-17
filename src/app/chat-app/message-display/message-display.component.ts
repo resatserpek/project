@@ -35,6 +35,7 @@ export class MessageDisplayComponent implements OnInit {
   sendMessage(message){    
     if(message.content !== ""){
       this.chatService.newMessage(this.chatId, message.content)
+      this.message.reset()
     } 
   }
   

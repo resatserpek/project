@@ -14,15 +14,32 @@ import { AuthGuard } from 'src/services/auth/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard], canLoad: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
-  { path: 'discover', component: DiscoverComponent},
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], canLoad:[AuthGuard]},
+
+  { 
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),    
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
+  },
+
+  { 
+    path: 'discover',
+    loadChildren: () => import('./discover/discover.module').then(m => m.DiscoverModule),
+  },
+  { 
+    path: 'profile', 
+    component: ProfileComponent,
+    canActivate: [AuthGuard], 
+    canLoad:[AuthGuard]
+  },
   { 
     path: 'marketplace', 
-    loadChildren: () => import('./marketplace/marketplace.module').then(m => m.MarketplaceModule),    
+    loadChildren: () => import('./marketplace/marketplace.module').then(m => m.MarketplaceModule),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]    
   },
   { 
     path: 'messages',

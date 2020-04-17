@@ -17,13 +17,14 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AuthService implements OnInit {
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
+    
   }
 
   //https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
   user$: Observable<User>;
-  private userDetails: User = null;
+  private userDetails: any = null;
   
+  userData;
   private eventAuthError = new BehaviorSubject<string>("");
   eventAuthError$ = this.eventAuthError.asObservable();
 
@@ -37,6 +38,7 @@ export class AuthService implements OnInit {
         switchMap(user => {
           if(user){
             this.userDetails = user;
+            
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else{
             return of(null);
@@ -48,7 +50,7 @@ export class AuthService implements OnInit {
 
 
   checkAuth(){
-    return ((this.userDetails == null) ? false : true);
+    return ((this.userDetails !== null) ? true : false);
   }
 
 
@@ -74,7 +76,7 @@ export class AuthService implements OnInit {
 
   signOut(){
     this.afAuth.auth.signOut()
-    .then((res) => this.router.navigate(['/']));
+    .then((res) => this.router.navigate(['/login']));
     console.log(`Signed out`)
   }
 
@@ -122,8 +124,37 @@ export class AuthService implements OnInit {
       })
     };
 
+  // https://stackoverflow.com/questions/47224976/firestore-get-document-by-id-on-angular-2/51517327
   getUser(): User{
+
+       
     return this.userDetails;
   }
+  getUserData(){
+    var data
+    return this.afs.doc<User>(`users/${this.userDetails.uid}`).ref.get()
+      .then(function(doc) {
+        if (doc.exists) {
+          data = doc.data()
+          
+          return data
+         
+        } else {
+          console.log("No such document!");
+          
+        }
+      })
+      .catch(function(error) {
+        console.log('Errors: ' + error);
+        
+      })  
+
+     
+    
+  }
+  setUserData(a){
+    console.log(a)
+  }
+  
 
 }
