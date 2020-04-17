@@ -16,12 +16,7 @@ import { FileUploadService } from '../upload/file-upload.service';
   providedIn: 'root'
 })
 export class ProfileService {
-  getProfilePic() {
-    var url: string = this.auth.getUser().photoURL;
-    console.log(url);
-    return this.fileManager.getMedia(url); 
-  }
-
+  
   private profile: AngularFirestoreDocument<User>;
   user: Observable<User>
 
@@ -45,13 +40,16 @@ export class ProfileService {
     );
   }
 
-  // 
-  update(){
+  getUser(id: string): Observable<any>{
 
+    let userDoc: AngularFirestoreDocument<User> = this.afs.collection('users').doc(id)
+
+    let user = userDoc.valueChanges();
+
+    return user
   }
 
-  getProfile(){
-    return this.profile;
-  }
+
+
 
 }

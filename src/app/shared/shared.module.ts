@@ -8,6 +8,8 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 
 import { UrlPipe } from "../url.pipe";
+import { PostCardComponent } from 'src/app/shared/post-card/post-card.component';
+import { SharedRoutingModule } from './shared-routing.module';
 
 
 const importModules = [
@@ -15,7 +17,8 @@ const importModules = [
   FormsModule,
   ReactiveFormsModule,
   MaterialModule,
-  NgxAudioPlayerModule
+  NgxAudioPlayerModule,
+  SharedRoutingModule
 ]
 
 const exportModules = [
@@ -24,11 +27,13 @@ const exportModules = [
   ReactiveFormsModule,
   MaterialModule,
   NgxAudioPlayerModule,
-  UrlPipe
+  UrlPipe,
+  PostCardComponent,
+  SharedRoutingModule
 ]
 
 @NgModule({
-  declarations: [UrlPipe],
+  declarations: [UrlPipe,PostCardComponent],
   imports: importModules,
   exports: exportModules,
   providers:[]

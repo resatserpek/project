@@ -1,0 +1,35 @@
+mat-grid-tile {
+    background: rgb(255, 255, 255);
+}
+
+.status {
+    width: 100%;
+    height: 100%;
+}
+
+.spacer {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+mat-toolbar {
+    background-color: inherit;
+}
+
+mat-nav-list.list-horizontal {
+    padding: 0;
+    .mat-list-item {
+        display: inline-block;
+        height: auto;
+        width: auto;
+    }
+    p {
+        margin-right: 1rem;
+    }
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}

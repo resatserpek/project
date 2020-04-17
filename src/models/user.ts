@@ -4,6 +4,7 @@ export interface User{
     displayName?: string;
     photoURL?: string;
     followerCount?: string;
+    followingCount?: string;
     songCount?: string;
     bio?: string;
 }

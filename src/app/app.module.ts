@@ -12,9 +12,8 @@ import { MarketplaceComponent } from '../components/marketplace/marketplace.comp
 import { QuestionsComponent } from '../components/questions/questions.component';
 
 
-import { PostCardComponent } from '../components/post-card/post-card.component';
 import { PostCreateComponent } from '../components/post-create/post-create.component';
-import { MaterialModule } from './material.module';
+
 
 import { environment } from '../environments/environment';
 
@@ -44,7 +43,6 @@ import { DiscoverModule } from './discover/discover.module';
     routingComponents,
     MarketplaceComponent,
     QuestionsComponent,
-    PostCardComponent,
     PostCreateComponent,
     LoginComponent,
     RegisterComponent,
@@ -69,6 +67,7 @@ import { DiscoverModule } from './discover/discover.module';
     AngularFireStorageModule, // storage
   ],
   providers: [AuthService],
+  exports: [AppRoutingModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
