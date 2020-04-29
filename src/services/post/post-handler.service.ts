@@ -47,5 +47,13 @@ export class PostHandlerService{
     }
   }
 
+  follow(following: Following){
+    if(this.auth.checkAuth()){
+      this.afs.collection('following').add(following)
+    }else{
+      this.router.navigate(['/login']);
+    }
+  }
+
 
 }

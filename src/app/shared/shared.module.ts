@@ -10,7 +10,8 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { UrlPipe } from "../url.pipe";
 import { PostCardComponent } from 'src/app/shared/post-card/post-card.component';
 import { SharedRoutingModule } from './shared-routing.module';
-
+import { ArrayPipe } from '../array.pipe';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const importModules = [
   CommonModule,
@@ -18,7 +19,8 @@ const importModules = [
   ReactiveFormsModule,
   MaterialModule,
   NgxAudioPlayerModule,
-  SharedRoutingModule
+  SharedRoutingModule,
+  MatProgressSpinnerModule
 ]
 
 const exportModules = [
@@ -29,11 +31,12 @@ const exportModules = [
   NgxAudioPlayerModule,
   UrlPipe,
   PostCardComponent,
-  SharedRoutingModule
+  SharedRoutingModule,
+  MatProgressSpinnerModule
 ]
 
 @NgModule({
-  declarations: [UrlPipe,PostCardComponent],
+  declarations: [UrlPipe,PostCardComponent, ArrayPipe],
   imports: importModules,
   exports: exportModules,
   providers:[]

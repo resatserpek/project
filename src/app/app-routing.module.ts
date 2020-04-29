@@ -48,7 +48,13 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   { path: 'questions', component: QuestionsComponent},
-  { path: 'user/:id', loadChildren: () => import('./userpage/userpage.module').then(m => m.UserpageModule),pathMatch: 'full'}
+  { 
+    path: ':id', 
+    loadChildren: () => import('./userpage/userpage.module').then(m => m.UserpageModule),
+    pathMatch: 'full',
+    canActivate: [AuthGuard], 
+    canLoad: [AuthGuard]
+  }
 ];
 
 @NgModule({

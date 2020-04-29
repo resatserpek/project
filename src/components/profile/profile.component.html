@@ -1,16 +1,16 @@
-<div class="profile">
+<div *ngIf="current | async as user" class="profile">
     <mat-card>
         <mat-grid-list cols="3" rowHeight="6rem">
             <mat-grid-tile [colspan]="1" [rowspan]="3">
 
-                <img mat-card-image [src]="(current | async)?.photoURL | url | async" alt="Photo of a Shiba Inu">
+                <img mat-card-image [src]="user.photoURL | url | async" alt="Photo of a Shiba Inu">
 
             </mat-grid-tile>
 
 
             <mat-grid-tile [colspan]="2" [rowspan]="1">
                 <mat-card-content class="horizontal">
-                    <h1>{{(current | async)?.displayName}}</h1>
+                    <h1>{{user.displayName}}</h1>
                     <a mat-button routerLink="profile">
                         <mat-icon aria-hidden="false">edit</mat-icon>
                     </a>
@@ -22,11 +22,11 @@
 
                 <mat-nav-list class="list-horizontal">
                     <a mat-list-item>
-                        <p>{{(current | async)?.songCount}}</p>
+                        <p>{{user.followingCount}}</p>
                         <h2>Songs</h2>
                     </a>
                     <a mat-list-item>
-                        <p>{{(current | async)?.followerCount}}</p>
+                        <p>{{user.followerCount}}</p>
                         <h2>Followers</h2>
                     </a>
                 </mat-nav-list>
@@ -35,7 +35,7 @@
             <mat-grid-tile [colspan]="2" [rowspan]="1">
                 <mat-card-content>
                     <p>
-                        {{(current | async)?.bio}}
+                        {{user.bio}}
                     </p>
                 </mat-card-content>
             </mat-grid-tile>
@@ -48,8 +48,17 @@
                     <app-post-card *ngFor="let post of posts | async" [postInstance]="post"></app-post-card>
 
                 </mat-tab>
-                <mat-tab label="Songs"> Content 2 </mat-tab>
-                <mat-tab label="Posts"> Content 3 </mat-tab>
+                <mat-tab label="Songs">
+                    <div *ngFor="let post of posts | async">
+                        <app-post-card *ngIf="post.isSong" [postInstance]="post"></app-post-card>
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="Posts">
+                    <div *ngFor="let post of posts | async">
+                        <app-post-card *ngIf="!post.isSong" [postInstance]="post"></app-post-card>
+                    </div>
+                </mat-tab>
 
             </mat-tab-group>
         </div>

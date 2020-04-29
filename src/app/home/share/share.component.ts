@@ -43,11 +43,12 @@ export class ShareComponent implements OnInit {
       path = `images/content/${this.file.name}`;
       this.uploader.upload(path, this.file);
     }
-    const userId = this.auth.getUser();
-
+    const user = this.auth.getUser();
+    console.log(user)
     const post: Post = {
-      userID: userId.uid,
-      displayName: userId.displayName,
+      avatar: user.photoURL,
+      userID: user.uid,
+      displayName: user.displayName,
       content: postForm.content,
       mediaURL: path,
       time: timestamp,
@@ -69,13 +70,14 @@ export class ShareComponent implements OnInit {
     
     
     const path = `music/${this.file.name}`;
-    const userId = this.auth.getUser();
+    const user = this.auth.getUser();
 
     const post: Post = {
-      userID: userId.uid,
-      displayName: userId.displayName,
+      userID: user.uid,
+      displayName: user.displayName,
       content: songForm.content,
       mediaURL: path,
+      avatar: user.photoURL,
       time: timestamp,
       isSong: true
     }

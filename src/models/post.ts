@@ -1,4 +1,5 @@
 export interface Post {
+    avatar: string;
     userID: string;
     displayName: string;
     content: string;

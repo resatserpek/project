@@ -35,6 +35,7 @@ import { ContactCardComponent } from '../components/contact-card/contact-card.co
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { DiscoverModule } from './discover/discover.module';
+import { UserpageModule } from './userpage/userpage.module';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { DiscoverModule } from './discover/discover.module';
     HomeModule,
     ChatAppModule,
     DiscoverModule,
+    UserpageModule,
 
 
     AngularFireModule.initializeApp(environment.firebase),

@@ -1,30 +1,61 @@
 <mat-grid-list cols="1" rowHeight="6rem">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
         <div class="search">
-            <form class="my-form">
+            <form class="my-form" [formGroup]="queryForm">
                 <mat-form-field class="full-width">
-                    <input matInput autocomplete="off" [(ngModel)]="query" [ngModelOptions]="{standalone: true}" type="search" placeholder="Search for songs, users and more...">
+                    <input matInput autocomplete="off" formControlName="content" (keyup.enter)="search(queryForm.value)" type="search" placeholder="Search for songs, users and more...">
                 </mat-form-field>
             </form>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile *ngIf="query !== ''" [colspan]=" 1 " [rowspan]="5 ">
+    <mat-grid-tile *ngIf="showResults" [colspan]=" 1 " [rowspan]="5 ">
 
         <br>
-        <div class="result ">
-            <p>Search results for {{query}}</p>
+        <div class="resultPanel">
+            <p>Search results for {{result}}</p>
             <hr>
             <mat-tab-group>
-                <mat-tab label="All">
-
-                </mat-tab>
                 <mat-tab label="Songs">
-
+                    <div *ngFor="let post of posts | async">
+                        <app-post-card *ngIf="post.isSong" [postInstance]="post"></app-post-card>
+                    </div>
                 </mat-tab>
-                <mat-tab label="Users">
 
-                </mat-tab>
                 <mat-tab label="Posts">
+                    <div *ngFor="let post of posts | async">
+                        <app-post-card *ngIf="!post.isSong" [postInstance]="post"></app-post-card>
+                    </div>
+                </mat-tab>
+                <!-- https://stackoverflow.com/questions/53767697/show-loading-indicator-in-angular-while-waiting-for-a-rxjs-observable-->
+                <mat-tab label="Users">
+                    <mat-grid-list cols="1" rowHeight="8rem">
+                        <div *ngIf="users | async else loading">
+                            <mat-grid-tile *ngFor="let user of users | async" [colspan]="1" [rowspan]="1">
+                                <div class="user">
+                                    <mat-grid-list cols="3" rowHeight="4rem">
+                                        <mat-grid-tile [colspan]="1" [rowspan]="2">
+                                            <div class="url">
+                                                <img [src]="user.photoURL | url | async" alt="No picture found">
+                                            </div>
+                                        </mat-grid-tile>
+                                        <mat-grid-tile [colspan]="2" [rowspan]="1">
+                                            <a [routerLink]="['../', user.uid]">
+                                                <h3>{{user.displayName}}</h3>
+                                            </a>
+                                        </mat-grid-tile>
+                                        <mat-grid-tile [colspan]=" 2 " [rowspan]="1 ">
+                                            <p>{{user.bio}}</p>
+                                        </mat-grid-tile>
+                                    </mat-grid-list>
+                                </div>
+                            </mat-grid-tile>
+                        </div>
+                    </mat-grid-list>
+
+                    <ng-template #loading>
+                        <mat-spinner></mat-spinner>
+                    </ng-template>
+
 
                 </mat-tab>
             </mat-tab-group>

@@ -56,28 +56,10 @@ export class AuthService implements OnInit {
 
   //https://itnext.io/step-by-step-complete-firebase-authentication-in-angular-2-97ca73b8eb32
   // CHANGE THIS LATER
-  signInWithTwitter() {
-    return this.afAuth.auth.signInWithPopup(
-      new firebase.auth.TwitterAuthProvider()
-    )
-  }
-
-  signInWithFacebook() {
-    return this.afAuth.auth.signInWithPopup(
-      new firebase.auth.FacebookAuthProvider()
-    )
-  }
-
-  signInWithGoogle() {
-    return this.afAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    )
-  }
 
   signOut(){
     this.afAuth.auth.signOut()
     .then((res) => this.router.navigate(['/login']));
-    console.log(`Signed out`)
   }
 
 
@@ -89,7 +71,15 @@ export class AuthService implements OnInit {
     // Inserting user data to authentication service, for later use
     
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
+  }
+
+  // Each user follows themselves
+  private addFollowing(uid){
+    this.afs.collection('following').add({
+      userId: uid,
+      followingId: uid
+    })
   }
 
   register(user){
@@ -102,6 +92,7 @@ export class AuthService implements OnInit {
           photoURL: res.user.photoURL
         }
         this.insertUserData(newUser);
+        this.addFollowing(res.user.uid);
         res.user.updateProfile({
           displayName: user.firstName + " " + user.lastName
         })
@@ -130,24 +121,21 @@ export class AuthService implements OnInit {
        
     return this.userDetails;
   }
-  getUserData(){
+  async getUserData(){
     var data
-    return this.afs.doc<User>(`users/${this.userDetails.uid}`).ref.get()
-      .then(function(doc) {
-        if (doc.exists) {
-          data = doc.data()
-          
-          return data
-         
-        } else {
-          console.log("No such document!");
-          
-        }
-      })
-      .catch(function(error) {
-        console.log('Errors: ' + error);
-        
-      })  
+    try {
+      const doc = await this.afs.doc<User>(`users/${this.userDetails.uid}`).ref.get();
+      if (doc.exists) {
+        data = doc.data();
+        return data;
+      }
+      else {
+        console.log("No such document!");
+      }
+    }
+    catch (error) {
+      console.log('Errors: ' + error);
+    }  
 
      
     

@@ -3,6 +3,9 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user';
 import { Post } from 'src/models/post';
+import { Following } from 'src/models/following';
+import { map } from 'rxjs/operators';
+import { AuthService } from 'src/services/user/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +13,18 @@ import { Post } from 'src/models/post';
 export class UserService {
 
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private auth: AuthService) { }
 
   getUser(id: string): Observable<User>{
 
     const userDoc: AngularFirestoreDocument<User> = this.afs.collection<User>('users').doc(id);
-    const user: Observable<User> = userDoc.valueChanges();
+    const user: Observable<User> = userDoc.valueChanges()
 
     return user;
     
+  }
+  getUsers():Observable<User[]>{
+    return this.afs.collection<User>('users').valueChanges();
   }
 
   getPosts(id: string): Observable<Post[]>{
@@ -26,8 +32,12 @@ export class UserService {
     return this.afs.collection<Post>('posts', ref => ref.where('userID','==', id).orderBy('time','desc')).valueChanges()
   }
 
-  getFollowerCount(): number{
-    
-    return 1;
+  getFollowings(id: string): Observable<Following[]>{
+    return this.afs.collection<Following>('following', ref => ref.where('userId','==',id)).valueChanges();
   }
+
+  getFollowers(id: string): Observable<Following[]>{
+    return this.afs.collection<Following>('following', ref => ref.where('followingId','==',id)).valueChanges();
+  }
+
 }
