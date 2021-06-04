@@ -1,0 +1,32 @@
+.profile {
+    background-color: white;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: contain;
+}
+
+//https: //stackoverflow.com/questions/49161039/mat-nav-list-horizontal-instead-of-vertical
+mat-nav-list.list-horizontal {
+    padding: 0;
+    .mat-list-item {
+        display: inline-block;
+        height: auto;
+        width: auto;
+    }
+}
+
+p {
+    margin-right: 1rem;
+}
+
+mat-card {
+    .horizontal {
+        display: inline-block;
+    }
+}
+
+app-post-card {
+    margin: 0 0 0 0;
+}

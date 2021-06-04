@@ -1,0 +1,19 @@
+<mat-toolbar>Followers</mat-toolbar>
+<div class="list">
+    <mat-grid-list cols="1" rowHeight="15rem">
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+
+            <div class="userList">
+
+                <div *ngFor=" let user of users | async">
+                    <div *ngFor=" let f of follower | async">
+                        <app-user-item *ngIf="f.userId === user.uid && f.followingId !== user.uid" [user]="user"></app-user-item>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

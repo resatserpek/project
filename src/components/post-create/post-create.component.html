@@ -1,0 +1,24 @@
+<mat-card class="example-card">
+    <mat-card-content>
+        <form [formGroup]="newPost">
+            <mat-form-field floatLabel="never" class="full-width">
+                <input matInput formControlName="content" rows="10" placeholder="Share something..">
+            </mat-form-field>
+        </form>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="left-actions">
+            <a mat-button routerLink="discover" routerLinkActive="active"><i class="material-icons">
+                    attachment
+                    </i></a>
+            <a mat-button routerLink="discover" routerLinkActive="active"><i class="material-icons">
+                        calendar_today
+                </i></a>
+        </div>
+        <div class="spacer"></div>
+        <div class="right-actions">
+            <button mat-raised-button (click)="share(newPost)">SHARE</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

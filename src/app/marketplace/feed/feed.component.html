@@ -1,0 +1,37 @@
+<mat-grid-list cols="5" rowHeight="3.5rem">
+    <!-- search query-->
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <div class="search">
+            <form class="my-form">
+                <mat-form-field class="full-width">
+                    <input matInput autocomplete="off" type="search" placeholder="Search..">
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-grid-tile>
+
+    <!-- sell button-->
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button mat-raised-button color="primary" routerLink='sell'>SELL</button>
+    </mat-grid-tile>
+
+    <!-- item list display-->
+    <mat-grid-tile [colspan]="5" [rowspan]="9">
+        <div class="itemContainer">
+            <mat-grid-list cols="3" rowHeight="4rem">
+                <a *ngFor="let item of items$ | async" [routerLink]="['item',item.id]">
+                    <mat-grid-tile [colspan]="1" [rowspan]="5">
+                        <mat-grid-tile-header>
+                            {{item.title}}
+                        </mat-grid-tile-header>
+                        <img [src]="item.url | url | async">
+                        <mat-grid-tile-footer>
+                            $ {{item.price}}
+                        </mat-grid-tile-footer>
+
+                    </mat-grid-tile>
+                </a>
+            </mat-grid-list>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

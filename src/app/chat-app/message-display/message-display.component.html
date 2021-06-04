@@ -1,0 +1,19 @@
+<div class="messageArea">
+    <mat-list role="list">
+        <mat-list-item *ngFor="let message of messages  | async" role="listitem" class="mat-elevation-z2">
+            <h6 matLine *ngIf="!message.isCurrent"><strong> {{message.displayName}}</strong></h6>
+            <h6 matLine *ngIf="message.isCurrent"><strong> You: </strong></h6>
+            <p matLine>{{ message.content }}</p>
+            <p matLine><small><mat-card-subtitle>{{ message.time.seconds * 1000 | date : 'medium'}}</mat-card-subtitle></small></p>
+
+        </mat-list-item>
+    </mat-list>
+
+</div>
+<div class="textInput">
+    <form [formGroup]="message" (keyup.enter)="sendMessage(message.value)" class="my-form">
+        <mat-form-field class="full-width">
+            <input matInput formControlName="content" autocomplete="off" placeholder="Type a message..">
+        </mat-form-field>
+    </form>
+</div>

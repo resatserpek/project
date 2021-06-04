@@ -1,0 +1,58 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <div class="spacer"><span>SongBook</span></div>
+</mat-toolbar>
+<mat-toolbar color="primary" class="mat-elevation-z6">
+
+
+
+    <div *ngIf="auth.user$ | async; then authenticated else guest">
+
+    </div>
+
+    <ng-template #guest>
+        <div class="spacer"><span>SongBook</span></div>
+        <a mat-button routerLink="login">
+            Login 
+        </a>
+        <a mat-button routerLink="register">
+            Register
+        </a>
+    </ng-template>
+
+    <ng-template #authenticated>
+        <div>
+            <a mat-button routerLink="home">
+                <mat-icon aria-hidden="false">home</mat-icon>
+
+            </a>
+            <a mat-button routerLink="discover" routerLinkActive="active"><i class="material-icons">
+            search
+            </i></a>
+            <a mat-button routerLink="events" routerLinkActive="active"><i class="material-icons">
+                calendar_today
+                </i></a>
+            <a mat-button routerLink="marketplace" routerLinkActive="active"><i class="material-icons">
+            store
+            </i></a>
+            <a mat-button routerLink="questions" routerLinkActive="active"><i class="material-icons">
+            question_answer
+            </i></a>
+        </div>
+
+        <div class="spacer"></div>
+        <div>
+            <a mat-button routerLink="profile">
+                <mat-icon aria-hidden="false">person</mat-icon>
+            </a>
+            <a mat-button routerLink="messages">
+                <mat-icon aria-hidden="false">email</mat-icon>
+            </a>
+            <a mat-button (click)="auth.signOut()">
+           Sign Out
+        </a>
+        </div>
+
+    </ng-template>
+
+
+</mat-toolbar>

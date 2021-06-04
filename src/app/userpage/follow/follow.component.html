@@ -1,0 +1,4 @@
+<button mat-button>
+    <mat-icon *ngIf="isFollowing" aria-hidden="false">done</mat-icon>
+    <div *ngIf="!isFollowing" (click)="follow()">FOLLOW</div>
+</button>

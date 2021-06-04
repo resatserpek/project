@@ -1,0 +1,40 @@
+<mat-toolbar>Sell an item</mat-toolbar>
+
+<div class="formField">
+    <div class="fields">
+        <form [formGroup]="itemForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" autocomplete="off" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" autocomplete="off"></textarea>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Select</mat-label>
+                <mat-select formControlName="category" required>
+                    <mat-option value="instrument">Instrument</mat-option>
+                    <mat-option value="recording">Recording Equipment</mat-option>
+                    <mat-option value="accessory">Accessories</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price" value="0" type="number" autocomplete="off" required>
+            </mat-form-field>
+            <br>
+
+            <input (change)="fileUpload($event)" formControlName="url" type="file" autocomplete="off" required>
+
+            <br>
+        </form>
+
+    </div>
+    <button mat-raised-button color="primary" (click)="createItem(itemForm.value)" [disabled]="!itemForm.valid">Sell</button>
+
+
+</div>
